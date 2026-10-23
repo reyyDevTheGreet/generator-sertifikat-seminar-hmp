@@ -1,0 +1,6 @@
+{
+  "name": "Generator Sertifikat Seminar HMP",
+  "description": "Generator sertifikat seminar otomatis untuk HMP Divisi Akademik. Peserta cukup memilih seminar dan memasukkan NIM untuk melihat preview dan mengunduh sertifikat PDF.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

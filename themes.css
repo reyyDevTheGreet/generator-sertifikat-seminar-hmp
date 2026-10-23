@@ -1,0 +1,573 @@
+/* ==========================================================================
+   THEMES.CSS - 15 DESAIN SERTIFIKAT SEMINAR HMP DIVISI AKADEMIK
+   Satu struktur HTML, 15 karakter visual berbeda melalui [data-desain="..."]
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   BASE VARIABLES & DEFAULT PROPERTIES
+   -------------------------------------------------------------------------- */
+.certificate-canvas {
+  --latar: #FBF7EE;
+  --utama: #1B2A49;
+  --aksen: #B8923A;
+  --teks: #1B2A49;
+  --font-title: 'Cinzel', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-name: 'Playfair Display', serif;
+  
+  background-color: var(--latar);
+  color: var(--teks);
+  font-family: var(--font-body);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Default Inner Elements Mapping */
+.certificate-canvas .cert-main-title {
+  font-family: var(--font-title);
+  color: var(--utama);
+}
+.certificate-canvas .cert-sub-title {
+  color: var(--aksen);
+}
+.certificate-canvas .cert-recipient-name {
+  font-family: var(--font-name);
+  color: var(--utama);
+}
+.certificate-canvas .cert-event-role {
+  color: var(--utama);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.certificate-canvas .cert-org-name {
+  color: var(--utama);
+}
+.certificate-canvas .cert-signer-name {
+  color: var(--teks);
+  border-top-color: var(--aksen);
+}
+.certificate-canvas .cert-name-container {
+  border-bottom-color: var(--aksen);
+}
+
+/* ==========================================================================
+   1. DESAIN: KLASIK (DEFAULT FALLBACK)
+   Border ganda navy dan emas, font serif, ornamen sudut klasik.
+   ========================================================================== */
+.certificate-canvas[data-desain="klasik"] {
+  --latar: #FBF7EE;
+  --utama: #1B2A49;
+  --aksen: #B8923A;
+  --teks: #1B2A49;
+  --font-title: 'Cinzel', Georgia, serif;
+  --font-name: 'Playfair Display', Georgia, serif;
+  background: radial-gradient(circle at center, #FFFFFF 65%, #FBF7EE 100%);
+}
+.certificate-canvas[data-desain="klasik"] .cert-outer-border {
+  border: 4px solid var(--aksen);
+  padding: 8px;
+}
+.certificate-canvas[data-desain="klasik"] .cert-inner-border {
+  border: 2px solid var(--utama);
+}
+
+/* ==========================================================================
+   2. DESAIN: MODERN
+   Banyak ruang kosong, garis aksen tipis di tepi, font sans-serif bersih.
+   ========================================================================== */
+.certificate-canvas[data-desain="modern"] {
+  --latar: #FFFFFF;
+  --utama: #1D4ED8;
+  --aksen: #0EA5E9;
+  --teks: #0F172A;
+  --font-title: 'Plus Jakarta Sans', sans-serif;
+  --font-name: 'Plus Jakarta Sans', sans-serif;
+  background: #FFFFFF;
+}
+.certificate-canvas[data-desain="modern"] .cert-outer-border {
+  border: none;
+  padding: 12px;
+  position: relative;
+}
+.certificate-canvas[data-desain="modern"] .cert-outer-border::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 6px; height: 100%;
+  background: linear-gradient(180deg, var(--utama) 0%, var(--aksen) 100%);
+}
+.certificate-canvas[data-desain="modern"] .cert-inner-border {
+  border: 1px solid #E2E8F0;
+  border-left: 2px solid var(--aksen);
+  background: #FAFAFA;
+}
+.certificate-canvas[data-desain="modern"] .cert-corner {
+  display: none;
+}
+.certificate-canvas[data-desain="modern"] .cert-main-title {
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+.certificate-canvas[data-desain="modern"] .cert-name-container {
+  border-bottom: 2px solid var(--aksen);
+}
+
+/* ==========================================================================
+   3. DESAIN: ELEGAN EMAS
+   Garis emas tipis, ornamen sudut, nama peserta serif display mewah.
+   ========================================================================== */
+.certificate-canvas[data-desain="elegan-emas"] {
+  --latar: #FAF6EC;
+  --utama: #1A1A1A;
+  --aksen: #C9A227;
+  --teks: #1A1A1A;
+  --font-title: 'Cinzel', Georgia, serif;
+  --font-name: 'Playfair Display', Georgia, serif;
+  background: radial-gradient(circle at center, #FFFFFF 60%, #FAF6EC 100%);
+}
+.certificate-canvas[data-desain="elegan-emas"] .cert-outer-border {
+  border: 1.5px solid var(--aksen);
+  padding: 10px;
+}
+.certificate-canvas[data-desain="elegan-emas"] .cert-inner-border {
+  border: 1px solid rgba(201, 162, 39, 0.4);
+}
+.certificate-canvas[data-desain="elegan-emas"] .cert-corner {
+  border-color: var(--aksen);
+  width: 40px;
+  height: 40px;
+}
+
+/* ==========================================================================
+   4. DESAIN: CERIA
+   Hiasan bulat dan confetti dari CSS, font rounded, warna hangat oranye-pink.
+   ========================================================================== */
+.certificate-canvas[data-desain="ceria"] {
+  --latar: #FFF8E1;
+  --utama: #F97316;
+  --aksen: #EC4899;
+  --teks: #3B2A12;
+  --font-title: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-name: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  background-color: #FFF8E1;
+  background-image: 
+    radial-gradient(#F97316 1.5px, transparent 1.5px),
+    radial-gradient(#EC4899 1.5px, #FFF8E1 1.5px);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+}
+.certificate-canvas[data-desain="ceria"] .cert-outer-border {
+  border: 5px dashed var(--utama);
+  border-radius: 24px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.94);
+}
+.certificate-canvas[data-desain="ceria"] .cert-inner-border {
+  border: 2px solid var(--aksen);
+  border-radius: 18px;
+}
+.certificate-canvas[data-desain="ceria"] .cert-corner {
+  display: none;
+}
+.certificate-canvas[data-desain="ceria"] .cert-event-role {
+  background: #FFEDD5;
+  color: #C2410C;
+}
+
+/* ==========================================================================
+   5. DESAIN: AKADEMIK
+   Pita biru tua di bagian atas, logo di tengah atas, serif formal.
+   ========================================================================== */
+.certificate-canvas[data-desain="akademik"] {
+  --latar: #F5F7FA;
+  --utama: #12355B;
+  --aksen: #8A98A8;
+  --teks: #1B2733;
+  --font-title: 'Cinzel', serif;
+  --font-name: 'Playfair Display', serif;
+  background: #F5F7FA;
+}
+.certificate-canvas[data-desain="akademik"] .cert-outer-border {
+  border: 3px solid var(--utama);
+  padding: 0;
+  position: relative;
+  background: #FFFFFF;
+}
+.certificate-canvas[data-desain="akademik"] .cert-outer-border::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 18px;
+  background: linear-gradient(90deg, #12355B 0%, #1e40af 50%, #12355B 100%);
+  z-index: 3;
+}
+.certificate-canvas[data-desain="akademik"] .cert-inner-border {
+  border: 1px solid #CBD5E1;
+  padding-top: 28px;
+}
+.certificate-canvas[data-desain="akademik"] .cert-corner {
+  border-color: var(--utama);
+}
+
+/* ==========================================================================
+   6. DESAIN: HIJAU ALAM
+   Motif daun garis sederhana di sudut, nuansa tenang dan natural.
+   ========================================================================== */
+.certificate-canvas[data-desain="hijau-alam"] {
+  --latar: #F4F1E8;
+  --utama: #3E6B4F;
+  --aksen: #A3B18A;
+  --teks: #24352B;
+  --font-title: 'Playfair Display', serif;
+  --font-name: 'Playfair Display', serif;
+  background: #F4F1E8;
+}
+.certificate-canvas[data-desain="hijau-alam"] .cert-outer-border {
+  border: 3px solid var(--utama);
+  padding: 8px;
+  background: radial-gradient(circle at center, #FFFFFF 70%, #F4F1E8 100%);
+}
+.certificate-canvas[data-desain="hijau-alam"] .cert-inner-border {
+  border: 1.5px solid var(--aksen);
+}
+.certificate-canvas[data-desain="hijau-alam"] .cert-corner {
+  border-color: var(--utama);
+  border-radius: 0 16px 0 16px;
+}
+.certificate-canvas[data-desain="hijau-alam"] .cert-event-role {
+  background: #E8EDE4;
+  color: #2D523C;
+}
+
+/* ==========================================================================
+   7. DESAIN: ROYAL BIRU
+   Segel emas bundar dan pita di bagian bawah, border biru royal.
+   ========================================================================== */
+.certificate-canvas[data-desain="royal-biru"] {
+  --latar: #FFFFFF;
+  --utama: #1E3A8A;
+  --aksen: #D4AF37;
+  --teks: #111C44;
+  --font-title: 'Cinzel', serif;
+  --font-name: 'Playfair Display', serif;
+  background: #FFFFFF;
+}
+.certificate-canvas[data-desain="royal-biru"] .cert-outer-border {
+  border: 6px solid var(--utama);
+  padding: 6px;
+  box-shadow: inset 0 0 0 2px var(--aksen);
+}
+.certificate-canvas[data-desain="royal-biru"] .cert-inner-border {
+  border: 1.5px solid var(--utama);
+  background: radial-gradient(circle at center, #FFFFFF 75%, #F0F4FF 100%);
+}
+.certificate-canvas[data-desain="royal-biru"] .seal-circle {
+  background: radial-gradient(circle, #FDE047 0%, #D4AF37 70%, #997B1A 100%);
+}
+
+/* ==========================================================================
+   8. DESAIN: MAROON
+   Border tebal maroon dengan garis krem emas di dalam, serif tegas.
+   ========================================================================== */
+.certificate-canvas[data-desain="maroon"] {
+  --latar: #FFF9F2;
+  --utama: #7A1F2B;
+  --aksen: #D9B382;
+  --teks: #3B0F15;
+  --font-title: 'Playfair Display', serif;
+  --font-name: 'Playfair Display', serif;
+  background: #FFF9F2;
+}
+.certificate-canvas[data-desain="maroon"] .cert-outer-border {
+  border: 8px solid var(--utama);
+  padding: 6px;
+  background: #FFFDF9;
+}
+.certificate-canvas[data-desain="maroon"] .cert-inner-border {
+  border: 2px solid var(--aksen);
+}
+.certificate-canvas[data-desain="maroon"] .cert-corner {
+  border-color: var(--utama);
+}
+.certificate-canvas[data-desain="maroon"] .cert-event-role {
+  background: #FEECEE;
+  color: #7A1F2B;
+}
+
+/* ==========================================================================
+   9. DESAIN: MINIMALIS
+   Hitam putih, tipografi besar, satu garis tipis, ruang kosong luas.
+   ========================================================================== */
+.certificate-canvas[data-desain="minimalis"] {
+  --latar: #FFFFFF;
+  --utama: #111111;
+  --aksen: #111111;
+  --teks: #111111;
+  --font-title: 'Plus Jakarta Sans', sans-serif;
+  --font-name: 'Plus Jakarta Sans', sans-serif;
+  background: #FFFFFF;
+}
+.certificate-canvas[data-desain="minimalis"] .cert-outer-border {
+  border: none;
+  padding: 16px;
+}
+.certificate-canvas[data-desain="minimalis"] .cert-inner-border {
+  border: 1px solid #111111;
+  padding: 28px 40px;
+}
+.certificate-canvas[data-desain="minimalis"] .cert-corner,
+.certificate-canvas[data-desain="minimalis"] .cert-watermark,
+.certificate-canvas[data-desain="minimalis"] .cert-logo-right {
+  display: none;
+}
+.certificate-canvas[data-desain="minimalis"] .cert-main-title {
+  font-weight: 300;
+  letter-spacing: 6px;
+}
+.certificate-canvas[data-desain="minimalis"] .cert-name-container {
+  border-bottom: 1px solid #111111;
+}
+
+/* ==========================================================================
+   10. DESAIN: GEOMETRIS
+   Segitiga dan bidang diagonal di sudut (clip-path), kombinasi teal dan oranye.
+   ========================================================================== */
+.certificate-canvas[data-desain="geometris"] {
+  --latar: #FFFFFF;
+  --utama: #0F766E;
+  --aksen: #F97316;
+  --teks: #134E4A;
+  --font-title: 'Outfit', sans-serif;
+  --font-name: 'Outfit', sans-serif;
+  background: #FFFFFF;
+  position: relative;
+}
+.certificate-canvas[data-desain="geometris"]::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 90px; height: 90px;
+  background: var(--utama);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  z-index: 4;
+}
+.certificate-canvas[data-desain="geometris"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 100px; height: 100px;
+  background: var(--aksen);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  z-index: 4;
+}
+.certificate-canvas[data-desain="geometris"] .cert-outer-border {
+  border: 2px solid #E5E7EB;
+  padding: 10px;
+}
+.certificate-canvas[data-desain="geometris"] .cert-inner-border {
+  border: 1px dashed var(--utama);
+}
+.certificate-canvas[data-desain="geometris"] .cert-corner {
+  display: none;
+}
+
+/* ==========================================================================
+   11. DESAIN: PASTEL LEMBUT
+   Warna pastel lembut, sudut membulat, hiasan awan atau lingkaran.
+   ========================================================================== */
+.certificate-canvas[data-desain="pastel"] {
+  --latar: #FFF5F7;
+  --utama: #B185DB;
+  --aksen: #A0E7E5;
+  --teks: #4A3F5C;
+  --font-title: 'Outfit', sans-serif;
+  --font-name: 'Outfit', sans-serif;
+  background: linear-gradient(135deg, #FFF5F7 0%, #F5F3FF 50%, #ECFEFF 100%);
+}
+.certificate-canvas[data-desain="pastel"] .cert-outer-border {
+  border: 3px solid #E9D5FF;
+  border-radius: 20px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.9);
+}
+.certificate-canvas[data-desain="pastel"] .cert-inner-border {
+  border: 1.5px solid var(--utama);
+  border-radius: 14px;
+}
+.certificate-canvas[data-desain="pastel"] .cert-corner {
+  display: none;
+}
+.certificate-canvas[data-desain="pastel"] .cert-event-role {
+  background: #F3E8FF;
+  color: #7E22CE;
+}
+
+/* ==========================================================================
+   12. DESAIN: GELAP ELEGAN (WCAG AA)
+   Latar arang, teks krem kontras tinggi, garis tembaga.
+   ========================================================================== */
+.certificate-canvas[data-desain="gelap"] {
+  --latar: #1F2328;
+  --utama: #F3E9DC;
+  --aksen: #C57B57;
+  --teks: #F3E9DC;
+  --font-title: 'Cinzel', serif;
+  --font-name: 'Playfair Display', serif;
+  background: radial-gradient(circle at center, #292E36 0%, #1F2328 100%);
+  color: var(--teks);
+}
+.certificate-canvas[data-desain="gelap"] .cert-outer-border {
+  border: 3px solid var(--aksen);
+  padding: 8px;
+  background: #1F2328;
+}
+.certificate-canvas[data-desain="gelap"] .cert-inner-border {
+  border: 1.5px solid rgba(197, 123, 87, 0.45);
+}
+.certificate-canvas[data-desain="gelap"] .cert-header {
+  border-bottom-color: rgba(243, 233, 220, 0.2);
+}
+.certificate-canvas[data-desain="gelap"] .cert-univ-name,
+.certificate-canvas[data-desain="gelap"] .cert-presented-to,
+.certificate-canvas[data-desain="gelap"] .cert-event-desc,
+.certificate-canvas[data-desain="gelap"] .cert-seminar-date,
+.certificate-canvas[data-desain="gelap"] .cert-signer-role,
+.certificate-canvas[data-desain="gelap"] .cert-signer-id {
+  color: #D6CCC2 !important;
+}
+.certificate-canvas[data-desain="gelap"] .cert-seminar-title {
+  color: #FFFFFF !important;
+}
+.certificate-canvas[data-desain="gelap"] .cert-signer-name {
+  color: #F3E9DC !important;
+  border-top-color: var(--aksen);
+}
+.certificate-canvas[data-desain="gelap"] .cert-nim-badge {
+  background: #2D333B;
+  color: #F3E9DC;
+  border-color: #444C56;
+}
+.certificate-canvas[data-desain="gelap"] .cert-event-role {
+  background: rgba(197, 123, 87, 0.25);
+  color: #F3E9DC;
+}
+.certificate-canvas[data-desain="gelap"] .cert-signature-script {
+  color: #C57B57;
+}
+
+/* ==========================================================================
+   13. DESAIN: NUANSA BATIK
+   Pola batik sederhana di tepi, warna sogan tradisional.
+   ========================================================================== */
+.certificate-canvas[data-desain="batik"] {
+  --latar: #F3E6CC;
+  --utama: #5C3A21;
+  --aksen: #A0522D;
+  --teks: #3E2415;
+  --font-title: 'Cinzel', serif;
+  --font-name: 'Playfair Display', serif;
+  background-color: #F3E6CC;
+  background-image: 
+    radial-gradient(circle at 50% 50%, #E6D2B1 20%, transparent 21%),
+    radial-gradient(circle at 0 0, #E6D2B1 20%, transparent 21%),
+    radial-gradient(circle at 100% 100%, #E6D2B1 20%, transparent 21%);
+  background-size: 32px 32px;
+}
+.certificate-canvas[data-desain="batik"] .cert-outer-border {
+  border: 6px double var(--utama);
+  padding: 8px;
+  background: rgba(253, 248, 237, 0.94);
+}
+.certificate-canvas[data-desain="batik"] .cert-inner-border {
+  border: 1.5px solid var(--aksen);
+}
+.certificate-canvas[data-desain="batik"] .cert-corner {
+  border-color: var(--utama);
+}
+.certificate-canvas[data-desain="batik"] .seal-circle {
+  background: radial-gradient(circle, #D4A373 0%, #A0522D 70%, #5C3A21 100%);
+}
+
+/* ==========================================================================
+   14. DESAIN: SENJA
+   Pita atas gradasi oranye ke ungu, selebihnya bersih modern.
+   ========================================================================== */
+.certificate-canvas[data-desain="senja"] {
+  --latar: #FFFFFF;
+  --utama: #7C3AED;
+  --aksen: #FB923C;
+  --teks: #2E1065;
+  --font-title: 'Outfit', sans-serif;
+  --font-name: 'Plus Jakarta Sans', sans-serif;
+  background: #FFFFFF;
+}
+.certificate-canvas[data-desain="senja"] .cert-outer-border {
+  border: 1px solid #E9D5FF;
+  padding: 0;
+  position: relative;
+}
+.certificate-canvas[data-desain="senja"] .cert-outer-border::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 14px;
+  background: linear-gradient(90deg, #FB923C 0%, #E11D48 40%, #7C3AED 100%);
+  z-index: 3;
+}
+.certificate-canvas[data-desain="senja"] .cert-inner-border {
+  border: none;
+  padding-top: 24px;
+}
+.certificate-canvas[data-desain="senja"] .cert-corner {
+  display: none;
+}
+.certificate-canvas[data-desain="senja"] .cert-name-container {
+  border-bottom: 2px solid var(--utama);
+}
+
+/* ==========================================================================
+   15. DESAIN: RETRO
+   Tepi bergerigi/scalloped effect, serif tebal, kombinasi krem, teal, oranye.
+   ========================================================================== */
+.certificate-canvas[data-desain="retro"] {
+  --latar: #F4E9D8;
+  --utama: #0F766E;
+  --aksen: #E4572E;
+  --teks: #2B2D42;
+  --font-title: 'Playfair Display', serif;
+  --font-name: 'Playfair Display', serif;
+  background-color: #F4E9D8;
+}
+.certificate-canvas[data-desain="retro"] .cert-outer-border {
+  border: 5px solid var(--utama);
+  padding: 8px;
+  background: #FFFBF5;
+  outline: 3px dashed var(--aksen);
+  outline-offset: -12px;
+}
+.certificate-canvas[data-desain="retro"] .cert-inner-border {
+  border: none;
+  padding: 24px 36px;
+}
+.certificate-canvas[data-desain="retro"] .cert-corner {
+  display: none;
+}
+.certificate-canvas[data-desain="retro"] .cert-event-role {
+  background: #FED7AA;
+  color: #9A3412;
+}
+
+/* ==========================================================================
+   ROLE / JENIS BADGES & LABELS
+   (Menyesuaikan teks & badge per jenis tanpa merusak warna tema)
+   ========================================================================== */
+.cert-role-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  border: 1px solid var(--aksen);
+  color: var(--utama);
+  margin-top: 4px;
+}

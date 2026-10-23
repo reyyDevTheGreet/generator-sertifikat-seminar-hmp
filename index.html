@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generator Sertifikat Seminar HMP - Divisi Akademik</title>
+    <meta name="description" content="Generator sertifikat seminar otomatis untuk peserta HMP Divisi Akademik. Verifikasi seminar, NIM, dan email untuk mengunduh sertifikat A4 PDF dengan berbagai pilihan tema desain resmi." />
+    <meta property="og:title" content="Generator Sertifikat Seminar HMP" />
+    <meta property="og:description" content="Klaim dan unduh sertifikat seminar akademik secara mandiri dan cepat." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Maksimal 5 keluarga font (Cinzel, Great Vibes, Outfit, Playfair Display, Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Great+Vibes&family=Outfit:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Root Aplikasi React -->
+    <div id="root"></div>
+
+    <!-- Portal Root Khusus Cetak Massal (Di luar #root agar terisolasi saat @media print) -->
+    <div id="print-portal-root"></div>
+
+    <!-- Entrypoint Script React -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

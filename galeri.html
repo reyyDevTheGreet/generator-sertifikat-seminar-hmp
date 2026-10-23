@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galeri 15 Desain Sertifikat - Panitia HMP Divisi Akademik</title>
+    <meta name="description" content="Katalog 15 desain sertifikat resmi siap pakai untuk panitia seminar HMP Divisi Akademik. Pilih tema dan salin ID desain ke Google Sheets." />
+
+    <!-- Google Fonts: 5 keluarga font standar (Cinzel, Great Vibes, Outfit, Playfair Display, Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Great+Vibes&family=Outfit:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./themes.css" />
+
+    <style>
+      /* Khusus Halaman Galeri */
+      .gallery-header {
+        background: #ffffff;
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.5rem 0;
+        margin-bottom: 2rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .gallery-intro {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: 2rem;
+      }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      @media (min-width: 768px) {
+        .steps-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .step-item {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 1rem;
+        border-left: 4px solid var(--primary);
+      }
+      .step-num {
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: var(--primary);
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+      }
+      .step-text {
+        font-size: 0.85rem;
+        color: var(--text-main);
+        font-weight: 500;
+      }
+
+      /* Control Bar Galeri */
+      .gallery-controls-bar {
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 1rem 1.25rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .gallery-controls-bar {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+      .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .filter-label {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-right: 0.25rem;
+      }
+      .filter-btn {
+        padding: 0.4rem 0.85rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background: #f8fafc;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .filter-btn:hover {
+        background: #e2e8f0;
+        color: var(--text-main);
+      }
+      .filter-btn.active {
+        background: var(--primary);
+        color: #ffffff;
+        border-color: var(--primary);
+        box-shadow: 0 2px 6px rgba(30, 58, 138, 0.2);
+      }
+
+      /* Grid Desain */
+      .designs-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+      @media (min-width: 640px) {
+        .designs-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .designs-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .design-card {
+        background: #ffffff;
+        border-radius: 14px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .design-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Mini Preview Scaled Container */
+      .card-preview-holder {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        background: #1e293b;
+        cursor: pointer;
+        /* A4 landscape aspect ratio 980 / 693 = ~1.414 */
+        aspect-ratio: 980 / 693;
+      }
+      .card-preview-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 980px;
+        height: 693px;
+        transform-origin: top left;
+        pointer-events: none;
+      }
+
+      .card-info {
+        padding: 1rem 1.25rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: space-between;
+      }
+      .card-header-line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.35rem;
+      }
+      .card-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+      .card-id-badge {
+        font-family: monospace;
+        font-size: 0.75rem;
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 8px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        font-weight: 600;
+      }
+      .card-suasana-badges {
+        display: flex;
+        gap: 0.35rem;
+        margin-bottom: 0.6rem;
+      }
+      .badge-suasana {
+        font-size: 0.7rem;
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-weight: 600;
+        text-transform: capitalize;
+        background: #f1f5f9;
+        color: #475569;
+      }
+      .badge-suasana.formal { background: #eff6ff; color: #1e40af; }
+      .badge-suasana.santai { background: #fdf2f8; color: #be185d; }
+      .badge-suasana.terang { background: #fefce8; color: #854d0e; }
+      .badge-suasana.gelap { background: #334155; color: #f8fafc; }
+
+      .card-desc {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+        margin-bottom: 1rem;
+        flex: 1;
+      }
+
+      .card-actions {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.5rem;
+      }
+
+      /* Modal Preview Besar */
+      .modal-preview-viewport {
+        width: 100%;
+        overflow: auto;
+        padding: 1rem;
+        background: #1e293b;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+      }
+      .modal-zoom-container {
+        position: relative;
+        display: block;
+        margin: 0 auto;
+      }
+
+      /* Toast Notifikasi Salin */
+      .copy-toast {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: #0f172a;
+        color: #ffffff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        box-shadow: var(--shadow-xl);
+        font-size: 0.875rem;
+        font-weight: 600;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 0;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+        pointer-events: none;
+      }
+      .copy-toast.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="gallery-header">
+      <div class="container header-content">
+        <div class="brand-wrapper">
+          <div class="brand-icon" style="background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+              <path d="M3 9h18"></path>
+              <path d="M9 21V9"></path>
+            </svg>
+          </div>
+          <div class="brand-titles">
+            <h1>Katalog 15 Desain Sertifikat</h1>
+            <p>Halaman Panitia Divisi Akademik • Pilih Desain untuk Seminar Anda</p>
+          </div>
+        </div>
+
+        <div>
+          <a href="./index.html" class="btn btn-secondary" style="font-size: 0.8125rem;">
+            ← Kembali ke Halaman Peserta
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- PETUNJUK 3 LANGKAH -->
+      <section class="gallery-intro">
+        <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--primary-dark);">
+          Panduan Memilih Desain Seminar
+        </h2>
+        <div class="steps-grid">
+          <div class="step-item">
+            <div class="step-num">Langkah 1</div>
+            <div class="step-text">Pilih salah satu dari 15 desain di bawah yang cocok dengan tema seminar Anda.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">Langkah 2</div>
+            <div class="step-text">Klik tombol <strong>"Salin ID Desain"</strong> (misalnya: <code>modern</code> atau <code>elegan-emas</code>).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">Langkah 3</div>
+            <div class="step-text">Tempelkan ID tersebut pada kolom <code>desain</code> di Google Sheets tab <strong>Final</strong>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTROLS & FILTER -->
+      <section class="gallery-controls-bar">
+        <!-- 1. Pilihan Jenis Peran (Peserta, Panitia, Pemateri) -->
+        <div class="filter-group">
+          <span class="filter-label">Jenis Sertifikat:</span>
+          <button type="button" class="filter-btn active" data-jenis="peserta">Peserta</button>
+          <button type="button" class="filter-btn" data-jenis="panitia">Panitia</button>
+          <button type="button" class="filter-btn" data-jenis="pemateri">Pemateri</button>
+        </div>
+
+        <!-- 2. Filter Suasana -->
+        <div class="filter-group">
+          <span class="filter-label">Filter Suasana:</span>
+          <button type="button" class="filter-btn active" data-filter="semua">Semua (15)</button>
+          <button type="button" class="filter-btn" data-filter="formal">Formal</button>
+          <button type="button" class="filter-btn" data-filter="santai">Santai</button>
+          <button type="button" class="filter-btn" data-filter="terang">Terang</button>
+          <button type="button" class="filter-btn" data-filter="gelap">Gelap</button>
+        </div>
+      </section>
+
+      <!-- GRID 15 KARTU DESAIN -->
+      <section id="designs-grid" class="designs-grid">
+        <!-- Kartu di-render dinamis oleh galeri.js menggunakan komponen sertifikat asli -->
+      </section>
+    </main>
+
+    <!-- MODAL PREVIEW BESAR -->
+    <div class="modal-overlay" id="gallery-preview-modal">
+      <div class="modal-dialog" style="max-width: 900px; width: 95%;">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-design-title">Preview Desain Sertifikat</h3>
+            <span id="modal-design-id" style="font-family: monospace; font-size: 0.8rem; color: #64748b;">ID: -</span>
+          </div>
+          <button type="button" class="modal-close" id="btn-close-gallery-modal" aria-label="Tutup">&times;</button>
+        </div>
+        <div class="modal-body" style="padding: 1rem;">
+          <div class="modal-preview-viewport" id="modal-viewport">
+            <div class="modal-zoom-container" id="modal-zoom-container">
+              <!-- Sertifikat besar di-inject ke sini -->
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+            <p style="font-size: 0.8125rem; color: var(--text-muted); margin: 0;">
+              Tip: Panitia cukup menyalin ID desain ini ke kolom <code>desain</code> pada Google Sheets.
+            </p>
+            <button type="button" class="btn btn-primary" id="btn-modal-copy-id">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+              </svg>
+              <span>Salin ID Desain</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFIKASI SALIN -->
+    <div class="copy-toast" id="copy-toast">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span id="copy-toast-text">Tersalin ke clipboard</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="./config.js"></script>
+    <script src="./galeri.js"></script>
+  </body>
+</html>
